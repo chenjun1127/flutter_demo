@@ -8,7 +8,7 @@ import 'package:flutter_demo/pages/demo6.dart';
 import 'package:flutter_demo/pages/demo7.dart';
 import 'package:flutter_demo/pages/demo8.dart';
 import 'package:flutter_demo/pages/demo9.dart';
-
+import 'package:flutter_demo/pages/demo10.dart';
 import 'components/MyDrawer.dart';
 
 void main() {
@@ -181,7 +181,14 @@ class _MyHomePageState extends State<MyHomePage> {
                         return Demo9(title: "Demo9 page");
                       }));
                     },
-                    child: Text('demo9'))
+                    child: Text('demo9')),
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return Demo10(title: "Demo10 page");
+                      }));
+                    },
+                    child: Text('demo10'))
               ],
             ),
           ],
