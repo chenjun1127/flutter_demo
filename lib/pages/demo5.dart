@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_demo/components/ProcessCircle.dart';
 
 class Demo5 extends StatelessWidget {
-  Demo5({Key key, @required this.title}) : super(key: key);
-  final String title;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(title),
+          title: Text(this.toStringShallow(joiner: " page")),
         ),
         body: Padding(
           padding: EdgeInsets.all(18),

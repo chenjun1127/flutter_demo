@@ -5,19 +5,23 @@ import 'package:flutter_demo/models/item.dart';
 import 'package:flutter_demo/utils/Consumer.dart';
 
 class Demo8 extends StatefulWidget {
-  Demo8({Key key, @required this.title}) : super(key: key);
+  Demo8({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
-  Demo8State createState() => Demo8State();
+  Demo8State createState() => Demo8State(this.toStringShallow(joiner: " page"));
 }
 
 class Demo8State extends State<Demo8> {
+  Demo8State(this.str);
+
+  final String str;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(str),
       ),
       body: Center(
         child: ChangeNotifierProvider(

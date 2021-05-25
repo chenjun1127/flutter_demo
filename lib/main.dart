@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/pages/demo1.dart';
+import 'package:flutter_demo/pages/demo10.dart';
 import 'package:flutter_demo/pages/demo2.dart';
 import 'package:flutter_demo/pages/demo3.dart';
 import 'package:flutter_demo/pages/demo4.dart';
@@ -8,7 +9,7 @@ import 'package:flutter_demo/pages/demo6.dart';
 import 'package:flutter_demo/pages/demo7.dart';
 import 'package:flutter_demo/pages/demo8.dart';
 import 'package:flutter_demo/pages/demo9.dart';
-import 'package:flutter_demo/pages/demo10.dart';
+
 import 'components/MyDrawer.dart';
 
 void main() {
@@ -17,6 +18,8 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  final List list = List.generate(10, (index) => index);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,16 +36,27 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter Demo Home Page', list: list),
       routes: {
         "demo1": (context) => new Demo1(),
+        "demo2": (context) => new Demo2(),
+        "demo3": (context) => new Demo3(),
+        "demo4": (context) => new Demo4(),
+        "demo5": (context) => new Demo5(),
+        "demo6": (context) => new Demo6(),
+        "demo7": (context) => new Demo7(),
+        "demo8": (context) => new Demo8(),
+        "demo9": (context) => new Demo9(title: "Demo9 page"),
+        "demo10": (context) => new Demo10(title: "Demo10 page"),
       },
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  final List list;
+
+  MyHomePage({Key key, this.title, this.list}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -90,109 +104,33 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 18, horizontal: 5),
         child: Center(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Text('You have pushed the button this many times1:'),
-            Text('$_counter', style: Theme.of(context).textTheme.headline4),
-            Wrap(
-              children: [
-                TextButton(
-                    style: ButtonStyle(
-                      textStyle: MaterialStateProperty.all(TextStyle(color: Colors.red)),
-                      foregroundColor: MaterialStateProperty.resolveWith((states) {
-                        if (states.contains(MaterialState.focused) && !states.contains(MaterialState.pressed)) {
-                          //获取焦点时的颜色
-                          return Colors.blue;
-                        } else if (states.contains(MaterialState.pressed)) {
-                          //按下时的颜色
-                          return Colors.deepPurple;
+            child: Column(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+          Text('You have pushed the button this many times1:'),
+          Text('$_counter', style: Theme.of(context).textTheme.headline4),
+          Wrap(
+              children: List.generate(
+                  widget.list.length,
+                  (index) => TextButton(
+                      onPressed: () {
+                        if (index == 2) {
+                          Future result = Navigator.pushNamed(context, "demo${widget.list[index] + 1}", arguments: <String, String>{"city": "beijing"});
+                          result.then((value) {
+                            if (value == null) {
+                              showAlertDialog().then((t) {
+                                if (t == true) {
+                                  Navigator.pushNamed(context, "demo${widget.list[index] + 1}", arguments: <String, String>{"city": "beijing"});
+                                }
+                              });
+                            } else {
+                              print(value);
+                            }
+                          });
+                        } else {
+                          Navigator.pushNamed(context, "demo${widget.list[index] + 1}");
                         }
-                        //默认状态使用灰色
-                        return Colors.grey;
-                      }),
-                      //背景颜色
-                      backgroundColor: MaterialStateProperty.resolveWith((states) {
-                        //设置按下时的背景颜色
-                        if (states.contains(MaterialState.pressed)) {
-                          return Colors.blue[200];
-                        }
-                        //默认不使用背景颜色
-                        return null;
-                      }),
-                    ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, "demo1");
-                    },
-                    child: Text('demo1')),
-                TextButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return Demo2(title: "Demo2 page");
-                      }));
-                    },
-                    child: Text('demo2')),
-                TextButton(
-                    onPressed: () async {
-                      var result = await Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return Demo3(text: "我是第三个页面的提示");
-                      }));
-                      print("路由返回值: $result");
-                    },
-                    child: Text('demo3')),
-                TextButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return Demo4(title: "Demo4 page");
-                      }));
-                    },
-                    child: Text('demo4')),
-                TextButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return Demo5(title: "Demo5 page");
-                      }));
-                    },
-                    child: Text('demo5')),
-                TextButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return Demo6(title: "Demo6 page");
-                      }));
-                    },
-                    child: Text('demo6')),
-                TextButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return Demo7(title: "Demo7 page");
-                      }));
-                    },
-                    child: Text('demo7')),
-                TextButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return Demo8(title: "Demo8 page");
-                      }));
-                    },
-                    child: Text('demo8')),
-                TextButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return Demo9(title: "Demo9 page");
-                      }));
-                    },
-                    child: Text('demo9')),
-                TextButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return Demo10(title: "Demo10 page");
-                      }));
-                    },
-                    child: Text('demo10'))
-              ],
-            ),
-          ],
-        )),
+                      },
+                      child: Text("demo${widget.list[index] + 1}")))),
+        ])),
       ),
       drawer: Drawer(
         child: MyDrawer(),
@@ -202,6 +140,32 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+
+  // 弹出对话框
+  Future<bool> showAlertDialog() {
+    return showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("提示"),
+          content: Text("路由返回值为空，请前往页面重新操作"),
+          actions: <Widget>[
+            TextButton(
+              child: Text("取消"),
+              onPressed: () => Navigator.of(context).pop(), // 关闭对话框
+            ),
+            TextButton(
+              child: Text("确定"),
+              onPressed: () {
+                //关闭对话框并返回true
+                Navigator.of(context).pop(true);
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

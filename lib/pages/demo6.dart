@@ -4,11 +4,8 @@ import 'package:flutter_demo/tabs/other.dart';
 import 'package:flutter_demo/tabs/picture.dart';
 
 class Demo6 extends StatefulWidget {
-  Demo6({Key key, @required this.title}) : super(key: key);
-  final String title;
-
   @override
-  Demo6State createState() => Demo6State(this.title);
+  Demo6State createState() => Demo6State(this.toStringShallow(joiner: " page"));
 }
 
 class Demo6State extends State<Demo6> with SingleTickerProviderStateMixin {
@@ -28,6 +25,7 @@ class Demo6State extends State<Demo6> with SingleTickerProviderStateMixin {
 
   @override
   void initState() {
+    print(this);
     super.initState();
     // 创建Controller
     _tabController = TabController(length: tabs.length, vsync: this);

@@ -4,21 +4,24 @@ import 'package:flutter_demo/components/WidgetA.dart';
 import 'package:flutter_demo/components/WidgetB.dart';
 
 class Demo7 extends StatefulWidget {
-  Demo7({Key key, @required this.title}) : super(key: key);
+  Demo7({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
-  Demo7State createState() => Demo7State();
+  Demo7State createState() => Demo7State(this.toStringShallow(joiner: " page"));
 }
 
 class Demo7State extends State<Demo7> {
+  Demo7State(this.str);
+
   int count = 0;
+  final String str;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text(str),
         ),
         body: Center(
           child: ShareDataWidget(
