@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_demo/pages/demo1.dart';
 import 'package:flutter_demo/pages/demo10.dart';
 import 'package:flutter_demo/pages/demo11.dart';
+import 'package:flutter_demo/pages/demo12.dart';
 import 'package:flutter_demo/pages/demo2.dart';
 import 'package:flutter_demo/pages/demo3.dart';
 import 'package:flutter_demo/pages/demo4.dart';
@@ -19,7 +20,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-  final List list = List.generate(11, (index) => index);
+  final List list = List.generate(12, (index) => index);
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
         "demo9": (context) => new Demo9(title: "Demo9 page"),
         "demo10": (context) => new Demo10(title: "Demo10 page"),
         "demo11": (context) => new Demo11(),
+        "demo12": (context) => new Demo12(),
       },
     );
   }

@@ -36,7 +36,7 @@ class Demo11State extends State<Demo11> {
                 width: MediaQuery.of(context).size.width,
                 height: 300,
                 color: Colors.grey,
-                child: Text(_pointerEvent.position?.toString() ?? "", style: TextStyle(color: Colors.white)),
+                child: Text(_pointerEvent?.position?.toString() ?? "", style: TextStyle(color: Colors.white)),
               ),
               onPointerDown: (PointerDownEvent pointerDownEvent) => setState(() => _pointerEvent = pointerDownEvent),
               onPointerMove: (PointerMoveEvent pointerMoveEvent) => setState(() => _pointerEvent = pointerMoveEvent),
