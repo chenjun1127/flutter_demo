@@ -8,7 +8,10 @@ import 'package:flutter_demo/pages/demo14.dart';
 import 'package:flutter_demo/pages/demo15.dart';
 import 'package:flutter_demo/pages/demo16.dart';
 import 'package:flutter_demo/pages/demo17.dart';
+import 'package:flutter_demo/pages/demo18.dart';
+import 'package:flutter_demo/pages/demo19.dart';
 import 'package:flutter_demo/pages/demo2.dart';
+import 'package:flutter_demo/pages/demo20.dart';
 import 'package:flutter_demo/pages/demo3.dart';
 import 'package:flutter_demo/pages/demo4.dart';
 import 'package:flutter_demo/pages/demo5.dart';
@@ -25,7 +28,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-  final List list = List.generate(17, (index) => index);
+  final List list = List.generate(20, (index) => index);
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +65,9 @@ class MyApp extends StatelessWidget {
         "demo15": (context) => new Demo15(),
         "demo16": (context) => new Demo16(),
         "demo17": (context) => new Demo17(),
+        "demo18": (context) => new Demo18(),
+        "demo19": (context) => new Demo19(),
+        "demo20": (context) => new Demo20(),
       },
     );
   }
@@ -115,44 +121,46 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 18, horizontal: 5),
-        child: Center(
-            child: Column(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-          Text('You have pushed the button this many times1:'),
-          Text('$_counter', style: Theme.of(context).textTheme.headline4),
-          Wrap(
-              children: List.generate(
-                  widget.list.length,
-                  (index) => Padding(
-                        padding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
-                        child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.resolveWith((states) => Colors.blue),
-                              shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(50)))),
-                              minimumSize: MaterialStateProperty.all(Size(100, 36)),
-                            ),
-                            onPressed: () {
-                              if (index == 2) {
-                                Future result = Navigator.pushNamed(context, "demo${widget.list[index] + 1}", arguments: <String, String>{"city": "beijing"});
-                                result.then((value) {
-                                  if (value == null) {
-                                    showAlertDialog().then((t) {
-                                      if (t == true) {
-                                        Navigator.pushNamed(context, "demo${widget.list[index] + 1}", arguments: <String, String>{"city": "beijing"});
-                                      }
-                                    });
-                                  } else {
-                                    print(value);
-                                  }
-                                });
-                              } else {
-                                Navigator.pushNamed(context, "demo${widget.list[index] + 1}");
-                              }
-                            },
-                            child: Text("demo${widget.list[index] + 1}")),
-                      ))),
-        ])),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 18, horizontal: 5),
+          child: Center(
+              child: Column(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+            Text('You have pushed the button this many times1:'),
+            Text('$_counter', style: Theme.of(context).textTheme.headline4),
+            Wrap(
+                children: List.generate(
+                    widget.list.length,
+                    (index) => Padding(
+                          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                          child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.resolveWith((states) => Colors.blue),
+                                shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(50)))),
+                                minimumSize: MaterialStateProperty.all(Size(100, 36)),
+                              ),
+                              onPressed: () {
+                                if (index == 2) {
+                                  Future result = Navigator.pushNamed(context, "demo${widget.list[index] + 1}", arguments: <String, String>{"city": "beijing"});
+                                  result.then((value) {
+                                    if (value == null) {
+                                      showAlertDialog().then((t) {
+                                        if (t == true) {
+                                          Navigator.pushNamed(context, "demo${widget.list[index] + 1}", arguments: <String, String>{"city": "beijing"});
+                                        }
+                                      });
+                                    } else {
+                                      print(value);
+                                    }
+                                  });
+                                } else {
+                                  Navigator.pushNamed(context, "demo${widget.list[index] + 1}");
+                                }
+                              },
+                              child: Text("demo${widget.list[index] + 1}")),
+                        ))),
+          ])),
+        ),
       ),
       drawer: Drawer(
         child: MyDrawer(),
