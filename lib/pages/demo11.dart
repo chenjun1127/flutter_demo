@@ -18,15 +18,10 @@ class Demo11State extends State<Demo11> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      // 超出高度才滚动
-      body: SingleChildScrollView(
-        reverse: true,
-        // 滑动到底部回弹效果
-        physics: BouncingScrollPhysics(),
-        child: Column(
+        appBar: AppBar(
+          title: Text(title),
+        ),
+        body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(padding: EdgeInsets.all(15), child: Text("原始指针监听", style: TextStyle(fontSize: 16))),
@@ -34,7 +29,7 @@ class Demo11State extends State<Demo11> {
               child: Container(
                 alignment: Alignment.center,
                 width: MediaQuery.of(context).size.width,
-                height: 300,
+                height: 200,
                 color: Colors.grey,
                 child: Text(_pointerEvent?.position?.toString() ?? "", style: TextStyle(color: Colors.white)),
               ),
@@ -47,7 +42,7 @@ class Demo11State extends State<Demo11> {
               child: Container(
                 alignment: Alignment.center,
                 width: MediaQuery.of(context).size.width,
-                height: 300,
+                height: 200,
                 color: Colors.grey,
                 child: Text(_tapDownDetails?.toString() ?? "", style: TextStyle(color: Colors.white)),
               ),
@@ -60,8 +55,6 @@ class Demo11State extends State<Demo11> {
               },
             )
           ],
-        ),
-      ),
-    );
+        ));
   }
 }

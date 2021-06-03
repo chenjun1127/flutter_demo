@@ -3,6 +3,11 @@ import 'package:flutter_demo/pages/demo1.dart';
 import 'package:flutter_demo/pages/demo10.dart';
 import 'package:flutter_demo/pages/demo11.dart';
 import 'package:flutter_demo/pages/demo12.dart';
+import 'package:flutter_demo/pages/demo13.dart';
+import 'package:flutter_demo/pages/demo14.dart';
+import 'package:flutter_demo/pages/demo15.dart';
+import 'package:flutter_demo/pages/demo16.dart';
+import 'package:flutter_demo/pages/demo17.dart';
 import 'package:flutter_demo/pages/demo2.dart';
 import 'package:flutter_demo/pages/demo3.dart';
 import 'package:flutter_demo/pages/demo4.dart';
@@ -20,7 +25,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-  final List list = List.generate(12, (index) => index);
+  final List list = List.generate(17, (index) => index);
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +57,11 @@ class MyApp extends StatelessWidget {
         "demo10": (context) => new Demo10(title: "Demo10 page"),
         "demo11": (context) => new Demo11(),
         "demo12": (context) => new Demo12(),
+        "demo13": (context) => new Demo13(),
+        "demo14": (context) => new Demo14(),
+        "demo15": (context) => new Demo15(),
+        "demo16": (context) => new Demo16(),
+        "demo17": (context) => new Demo17(),
       },
     );
   }
@@ -114,26 +124,34 @@ class _MyHomePageState extends State<MyHomePage> {
           Wrap(
               children: List.generate(
                   widget.list.length,
-                  (index) => TextButton(
-                      onPressed: () {
-                        if (index == 2) {
-                          Future result = Navigator.pushNamed(context, "demo${widget.list[index] + 1}", arguments: <String, String>{"city": "beijing"});
-                          result.then((value) {
-                            if (value == null) {
-                              showAlertDialog().then((t) {
-                                if (t == true) {
-                                  Navigator.pushNamed(context, "demo${widget.list[index] + 1}", arguments: <String, String>{"city": "beijing"});
-                                }
-                              });
-                            } else {
-                              print(value);
-                            }
-                          });
-                        } else {
-                          Navigator.pushNamed(context, "demo${widget.list[index] + 1}");
-                        }
-                      },
-                      child: Text("demo${widget.list[index] + 1}")))),
+                  (index) => Padding(
+                        padding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
+                        child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.resolveWith((states) => Colors.blue),
+                              shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(50)))),
+                              minimumSize: MaterialStateProperty.all(Size(100, 36)),
+                            ),
+                            onPressed: () {
+                              if (index == 2) {
+                                Future result = Navigator.pushNamed(context, "demo${widget.list[index] + 1}", arguments: <String, String>{"city": "beijing"});
+                                result.then((value) {
+                                  if (value == null) {
+                                    showAlertDialog().then((t) {
+                                      if (t == true) {
+                                        Navigator.pushNamed(context, "demo${widget.list[index] + 1}", arguments: <String, String>{"city": "beijing"});
+                                      }
+                                    });
+                                  } else {
+                                    print(value);
+                                  }
+                                });
+                              } else {
+                                Navigator.pushNamed(context, "demo${widget.list[index] + 1}");
+                              }
+                            },
+                            child: Text("demo${widget.list[index] + 1}")),
+                      ))),
         ])),
       ),
       drawer: Drawer(
