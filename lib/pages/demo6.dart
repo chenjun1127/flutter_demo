@@ -14,7 +14,7 @@ class Demo6State extends State<Demo6> with SingleTickerProviderStateMixin {
   TabController _tabController;
   final String str;
   int selectedIndex = 0;
-  List tabs = ["新闻", "美图", "段子"];
+  List tabs = ["新闻", "美图"];
 
   void handleTap(value) {
     print(value);

@@ -12,6 +12,7 @@ class CounterWidget extends StatefulWidget {
 
 class CounterWidgetState extends State<CounterWidget> {
   int _count = 0;
+
   // https://book.flutterchina.club/chapter3/flutter_widget_intro.html#_3-1-6-state
   @override
   void initState() {
@@ -22,25 +23,15 @@ class CounterWidgetState extends State<CounterWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              widget.title,
-              style: TextStyle(color: Colors.blueGrey, fontSize: 24),
-            ),
-            TextButton(
-                onPressed: () {
-                  setState(() {
-                    ++_count;
-                  });
-                },
-                child: Text("$_count"))
-          ],
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          widget.title,
+          style: TextStyle(color: Colors.blueGrey, fontSize: 24),
         ),
-      ),
+        TextButton(onPressed: () => setState(() => ++_count), child: Text("$_count"))
+      ],
     );
   }
 
