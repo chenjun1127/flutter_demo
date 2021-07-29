@@ -17,13 +17,17 @@ class _Demo19State extends State<Demo19> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(vsync: this, duration: Duration(seconds: 3));
+    _animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 3));
     bool isForward = true;
     _animationController.addStatusListener((status) {
       if (status == AnimationStatus.forward) {
         isForward = true;
-      } else if (status == AnimationStatus.completed || status == AnimationStatus.dismissed) {
-        isForward ? _animationController.reverse() : _animationController.forward();
+      } else if (status == AnimationStatus.completed ||
+          status == AnimationStatus.dismissed) {
+        isForward
+            ? _animationController.reverse()
+            : _animationController.forward();
       } else if (status == AnimationStatus.reverse) {
         isForward = false;
       }
@@ -80,18 +84,51 @@ class _Demo19State extends State<Demo19> with TickerProviderStateMixin {
                                 radius: 50.0,
                                 strokeWidth: 5.0,
                                 strokeCapRound: true,
-                                value: CurvedAnimation(parent: _animationController, curve: Curves.decelerate).value,
+                                value: CurvedAnimation(
+                                        parent: _animationController,
+                                        curve: Curves.decelerate)
+                                    .value,
                               ),
                               TurnBox(
                                 turns: 1 / 8,
-                                child: GradientCircularProgressIndicator(colors: [Colors.red, Colors.orange, Colors.red], radius: 50.0, strokeWidth: 5.0, strokeCapRound: true, backgroundColor: Colors.red[50], totalAngle: 1.5 * pi, value: CurvedAnimation(parent: _animationController, curve: Curves.ease).value),
+                                child: GradientCircularProgressIndicator(
+                                    colors: [
+                                      Colors.red,
+                                      Colors.orange,
+                                      Colors.red
+                                    ],
+                                    radius: 50.0,
+                                    strokeWidth: 5.0,
+                                    strokeCapRound: true,
+                                    backgroundColor: Colors.red[50],
+                                    totalAngle: 1.5 * pi,
+                                    value: CurvedAnimation(
+                                            parent: _animationController,
+                                            curve: Curves.ease)
+                                        .value),
                               ),
                               RotatedBox(
                                 quarterTurns: 1,
-                                child: GradientCircularProgressIndicator(colors: [Colors.blue[700], Colors.blue[200]], radius: 50.0, strokeWidth: 3.0, strokeCapRound: true, backgroundColor: Colors.transparent, value: _animationController.value),
+                                child: GradientCircularProgressIndicator(
+                                    colors: [
+                                      Colors.blue[700],
+                                      Colors.blue[200]
+                                    ],
+                                    radius: 50.0,
+                                    strokeWidth: 3.0,
+                                    strokeCapRound: true,
+                                    backgroundColor: Colors.transparent,
+                                    value: _animationController.value),
                               ),
                               GradientCircularProgressIndicator(
-                                colors: [Colors.red, Colors.amber, Colors.cyan, Colors.green[200], Colors.blue, Colors.red],
+                                colors: [
+                                  Colors.red,
+                                  Colors.amber,
+                                  Colors.cyan,
+                                  Colors.green[200],
+                                  Colors.blue,
+                                  Colors.red
+                                ],
                                 radius: 50.0,
                                 strokeWidth: 5.0,
                                 strokeCapRound: true,

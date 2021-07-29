@@ -16,12 +16,17 @@ class HttpUtil {
       headers: {});
   static Dio dio = Dio(options);
 
-  static Future get({@required String url, Map<String, dynamic> data = const {}, options, cancelToken}) async {
+  static Future get(
+      {@required String url,
+      Map<String, dynamic> data = const {},
+      options,
+      cancelToken}) async {
     print('get请求启动! url：$url ,body: $data');
     Response response;
 
     try {
-      response = await dio.get(url, queryParameters: data, cancelToken: cancelToken);
+      response =
+          await dio.get(url, queryParameters: data, cancelToken: cancelToken);
       print('get请求完成! response.data：${response.data}');
     } on DioError catch (e) {
       if (CancelToken.isCancel(e)) {
@@ -32,7 +37,11 @@ class HttpUtil {
     return response.data;
   }
 
-  static Future post({@required String url, Map<String, dynamic> data = const {}, options, cancelToken}) async {
+  static Future post(
+      {@required String url,
+      Map<String, dynamic> data = const {},
+      options,
+      cancelToken}) async {
     print('post请求启动! url：$url ,body: $data');
     Response response;
 

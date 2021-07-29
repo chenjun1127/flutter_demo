@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_demo/events/CustomEvent.dart';
+import 'package:flutter_demo/utils/EventBusUtil.dart';
 
 class Demo20 extends StatefulWidget {
   const Demo20({Key key}) : super(key: key);
@@ -59,68 +62,71 @@ class _Demo20State extends State<Demo20> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Demo20 page"),
-        ),
-        body: SingleChildScrollView(
-          padding: EdgeInsets.all(16),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextFormField(
-                  autofocus: _nameAutoFocus,
-                  controller: _userNameController,
-                  focusNode: _focusNodeUserName,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.person),
-                    hintText: "请输入用户名",
-                    suffixIcon: _isShowClear
-                        ? IconButton(
-                            icon: Icon(Icons.clear),
-                            onPressed: () {
-                              _userNameController.clear();
-                              _passwordController.clear();
-                            })
-                        : null,
-                  ),
-                  onSaved: (String value) => _username = value,
-                  //验证用户名
-                  validator: validateUserName,
+      appBar: AppBar(
+        title: Text("Demo20 page"),
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextFormField(
+                autofocus: _nameAutoFocus,
+                controller: _userNameController,
+                focusNode: _focusNodeUserName,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.person),
+                  hintText: "请输入用户名",
+                  suffixIcon: _isShowClear
+                      ? IconButton(
+                          icon: Icon(Icons.clear),
+                          onPressed: () {
+                            _userNameController.clear();
+                            _passwordController.clear();
+                          })
+                      : null,
                 ),
-                TextFormField(
-                  controller: _passwordController,
-                  focusNode: _focusNodePassWord,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.lock),
-                    hintText: "请输入密码",
-                    suffixIcon: IconButton(icon: Icon(_isShowPwd ? Icons.visibility : Icons.visibility_off), onPressed: () => setState(() => _isShowPwd = !_isShowPwd)),
-                  ),
-                  onSaved: (String value) => _password = value,
-                  obscureText: !_isShowPwd,
-                  validator: validatePassWord,
+                onSaved: (String value) => _username = value,
+                //验证用户名
+                validator: validateUserName,
+              ),
+              TextFormField(
+                controller: _passwordController,
+                focusNode: _focusNodePassWord,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.lock),
+                  hintText: "请输入密码",
+                  suffixIcon: IconButton(
+                      icon: Icon(_isShowPwd ? Icons.visibility : Icons.visibility_off),
+                      onPressed: () => setState(() => _isShowPwd = !_isShowPwd)),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 25),
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints.expand(height: 55.0),
-                    child: ElevatedButton(
-                      // color: Theme.of(context).primaryColor,
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Colors.blue),
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(borderRadius: BorderRadius.circular(35.0)),
-                          )),
-                      onPressed: _onLogin,
-                      child: Text("登录"),
-                    ),
+                onSaved: (String value) => _password = value,
+                obscureText: !_isShowPwd,
+                validator: validatePassWord,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 25),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints.expand(height: 55.0),
+                  child: ElevatedButton(
+                    // color: Theme.of(context).primaryColor,
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.blue),
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(35.0)),
+                        )),
+                    onPressed: _onLogin,
+                    child: Text("登录"),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   void _onLogin() {
@@ -135,6 +141,8 @@ class _Demo20State extends State<Demo20> {
       //只有输入通过验证，才会执行这里
       formState.save();
       print("$_username + $_password");
+      eventBus.emit(CustomEvent(1, "登录成功"));
+      Navigator.pushNamed(context, "eventBusNews");
     }
   }
 

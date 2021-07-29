@@ -34,18 +34,25 @@ class _StateImageWidget extends State<ImageWidget> {
       fit: BoxFit.cover,
     );
     var resolve = _image.image.resolve(ImageConfiguration.empty);
-    resolve.addListener(ImageStreamListener((_, __) {
-      //加载成功
-    }, onError: (dynamic exception, StackTrace stackTrace) {
-      //加载失败
-      setState(() {
-        _image = Image.asset(
-          widget.defImagePath,
-          width: widget.w,
-          height: widget.h,
-        );
-      });
-    }));
+    resolve.addListener(
+      ImageStreamListener(
+        (_, __) {
+          //加载成功
+        },
+        onError: (dynamic exception, StackTrace stackTrace) {
+          //加载失败
+          setState(
+            () {
+              _image = Image.asset(
+                widget.defImagePath,
+                width: widget.w,
+                height: widget.h,
+              );
+            },
+          );
+        },
+      ),
+    );
   }
 
   @override

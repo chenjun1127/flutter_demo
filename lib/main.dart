@@ -1,25 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_demo/pages/demo1.dart';
-import 'package:flutter_demo/pages/demo10.dart';
-import 'package:flutter_demo/pages/demo11.dart';
-import 'package:flutter_demo/pages/demo12.dart';
-import 'package:flutter_demo/pages/demo13.dart';
-import 'package:flutter_demo/pages/demo14.dart';
-import 'package:flutter_demo/pages/demo15.dart';
-import 'package:flutter_demo/pages/demo16.dart';
-import 'package:flutter_demo/pages/demo17.dart';
-import 'package:flutter_demo/pages/demo18.dart';
-import 'package:flutter_demo/pages/demo19.dart';
-import 'package:flutter_demo/pages/demo2.dart';
-import 'package:flutter_demo/pages/demo20.dart';
-import 'package:flutter_demo/pages/demo21.dart';
-import 'package:flutter_demo/pages/demo3.dart';
-import 'package:flutter_demo/pages/demo4.dart';
-import 'package:flutter_demo/pages/demo5.dart';
-import 'package:flutter_demo/pages/demo6.dart';
-import 'package:flutter_demo/pages/demo7.dart';
-import 'package:flutter_demo/pages/demo8.dart';
-import 'package:flutter_demo/pages/demo9.dart';
+import 'package:flutter_demo/events/CustomEvent.dart';
+import 'package:flutter_demo/routes/routes.dart';
+import 'package:flutter_demo/utils/EventBusUtil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'components/MyDrawer.dart';
 
@@ -29,7 +14,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-  final List list = List.generate(21, (index) => index);
 
   @override
   Widget build(BuildContext context) {
@@ -48,29 +32,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page', list: list),
-      routes: {
-        "demo1": (context) => new Demo1(),
-        "demo2": (context) => new Demo2(),
-        "demo3": (context) => new Demo3(),
-        "demo4": (context) => new Demo4(),
-        "demo5": (context) => new Demo5(),
-        "demo6": (context) => new Demo6(),
-        "demo7": (context) => new Demo7(),
-        "demo8": (context) => new Demo8(),
-        "demo9": (context) => new Demo9(title: "Demo9 page"),
-        "demo10": (context) => new Demo10(title: "Demo10 page"),
-        "demo11": (context) => new Demo11(),
-        "demo12": (context) => new Demo12(),
-        "demo13": (context) => new Demo13(),
-        "demo14": (context) => new Demo14(),
-        "demo15": (context) => new Demo15(),
-        "demo16": (context) => new Demo16(),
-        "demo17": (context) => new Demo17(),
-        "demo18": (context) => new Demo18(),
-        "demo19": (context) => new Demo19(),
-        "demo20": (context) => new Demo20(),
-        "demo21": (context) => new Demo21(),
-      },
+      routes: {...base, ...routes},
     );
   }
 }
@@ -109,6 +71,33 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  StreamSubscription loginSubscription;
+
+  var result;
+
+  // 监听Bus events
+  void _listen() {
+    loginSubscription = eventBus.on<CustomEvent>((event) {
+      print("-----${event.type}");
+      if (event.type == 1) {
+        Fluttertoast.showToast(msg: event.message);
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _listen();
+  }
+
+  @override
+  void dispose() {
+    loginSubscription.cancel();
+    eventBus.off(loginSubscription);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -127,41 +116,62 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 18, horizontal: 5),
           child: Center(
-              child: Column(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-            Text('You have pushed the button this many times1:'),
-            Text('$_counter', style: Theme.of(context).textTheme.headline4),
-            Wrap(
-                children: List.generate(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text('You have pushed the button this many times1:'),
+                Text('$_counter', style: Theme.of(context).textTheme.headline4),
+                Wrap(
+                  children: List.generate(
                     widget.list.length,
                     (index) => Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                          child: ElevatedButton(
-                              style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.resolveWith((states) => Colors.blue),
-                                shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(50)))),
-                                minimumSize: MaterialStateProperty.all(Size(100, 36)),
+                      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.resolveWith((states) => Colors.blue),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(50),
                               ),
-                              onPressed: () {
-                                if (index == 2) {
-                                  Future result = Navigator.pushNamed(context, "demo${widget.list[index] + 1}", arguments: <String, String>{"city": "beijing"});
-                                  result.then((value) {
-                                    if (value == null) {
-                                      showAlertDialog().then((t) {
-                                        if (t == true) {
-                                          Navigator.pushNamed(context, "demo${widget.list[index] + 1}", arguments: <String, String>{"city": "beijing"});
-                                        }
-                                      });
-                                    } else {
-                                      print(value);
-                                    }
-                                  });
+                            ),
+                          ),
+                          minimumSize: MaterialStateProperty.all(
+                            Size(100, 36),
+                          ),
+                        ),
+                        onPressed: () {
+                          if (index == 2) {
+                            Future result = Navigator.pushNamed(context, "demo${widget.list[index] + 1}",
+                                arguments: <String, String>{"city": "beijing"});
+                            result.then(
+                              (value) {
+                                if (value == null) {
+                                  showAlertDialog().then(
+                                    (t) {
+                                      if (t == true) {
+                                        Navigator.pushNamed(context, "demo${widget.list[index] + 1}",
+                                            arguments: <String, String>{"city": "beijing"});
+                                      }
+                                    },
+                                  );
                                 } else {
-                                  Navigator.pushNamed(context, "demo${widget.list[index] + 1}");
+                                  print(value);
                                 }
                               },
-                              child: Text("demo${widget.list[index] + 1}")),
-                        ))),
-          ])),
+                            );
+                          } else {
+                            Navigator.pushNamed(context, "demo${widget.list[index] + 1}");
+                          }
+                        },
+                        child: Text("demo${widget.list[index] + 1}"),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
       drawer: Drawer(
