@@ -1,37 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class MyDrawer extends StatefulWidget {
+class DrawerWidget extends StatefulWidget {
   final List<Map<dynamic, dynamic>> menu;
 
   final String name;
 
   static const routes = [
-    {
-      "id": "0",
-      "name": "登录",
-      IconData: Icons.account_balance,
-      "routeName": "demo20"
-    },
-    {
-      "id": "1",
-      "name": "消息总线",
-      IconData: Icons.new_releases,
-      "routeName": "eventBusNews"
-    },
+    {"id": "0", "name": "登录", IconData: Icons.account_balance, "routeName": "demo20"},
+    {"id": "1", "name": "消息总线", IconData: Icons.new_releases, "routeName": "eventBusNews"},
     {"id": "2", "name": "layout-view", IconData: Icons.add, "routeName": ""},
     {"id": "3", "name": "icon-container", IconData: Icons.adb, "routeName": ""}
   ];
 
-  MyDrawer({Key key, this.menu = routes, this.name = "抽屉"}) : super(key: key);
+  DrawerWidget({Key key, this.menu = routes, this.name = "抽屉"}) : super(key: key);
 
   @override
-  MyDrawerState createState() {
-    return MyDrawerState();
-  }
+  DrawerWidgetState createState() => DrawerWidgetState();
 }
 
-class MyDrawerState extends State<MyDrawer> {
+class DrawerWidgetState extends State<DrawerWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -60,20 +48,15 @@ class MyDrawerState extends State<MyDrawer> {
               (index) {
                 return InkWell(
                   onTap: () {
-                    Navigator.pushNamed(
-                        context, widget.menu[index]['routeName']);
+                    Navigator.pushNamed(context, widget.menu[index]['routeName']);
                   },
                   child: Container(
                     child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 18),
+                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 18),
                       child: Row(
                         children: [
-                          Expanded(
-                              child: Icon(widget.menu[index][IconData]),
-                              flex: 1),
-                          Expanded(
-                              child: Text(widget.menu[index]['name']), flex: 4),
+                          Expanded(child: Icon(widget.menu[index][IconData]), flex: 1),
+                          Expanded(child: Text(widget.menu[index]['name']), flex: 4),
                         ],
                       ),
                     ),

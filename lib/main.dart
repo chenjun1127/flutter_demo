@@ -1,12 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/components/DrawerWidget.dart';
 import 'package:flutter_demo/events/CustomEvent.dart';
 import 'package:flutter_demo/routes/routes.dart';
 import 'package:flutter_demo/utils/EventBusUtil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
-import 'components/MyDrawer.dart';
 
 void main() {
   runApp(MyApp());
@@ -175,7 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       drawer: Drawer(
-        child: MyDrawer(),
+        child: DrawerWidget(),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
