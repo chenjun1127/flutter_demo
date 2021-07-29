@@ -20,6 +20,8 @@ import 'package:flutter_demo/pages/demo19.dart';
 import 'package:flutter_demo/pages/demo20.dart';
 import 'package:flutter_demo/pages/demo21.dart';
 import 'package:flutter_demo/views/event_bus_news.dart';
+import 'package:flutter_demo/views/flow_menu_page.dart';
+import 'package:flutter_demo/views/container_transform.dart';
 
 final List list = List.generate(21, (index) => index);
 final base = {
@@ -48,4 +50,6 @@ final base = {
 
 final routes = {
   "eventBusNews": (context) => EventBusNews(),
+  "flowMenuPage":(context) => FlowMenuPage(),
+  "containerTransform":(context) => ContainerTransform(),
 };

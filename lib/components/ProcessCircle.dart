@@ -29,7 +29,14 @@ class ProgressCircleState extends State<ProgressCircle> with SingleTickerProvide
     return SingleChildScrollView(
       child: Column(
         children: [
-          Padding(padding: EdgeInsets.fromLTRB(0, 18, 0, 18), child: LinearProgressIndicator(backgroundColor: Colors.grey[200], valueColor: ColorTween(begin: Colors.redAccent, end: Colors.indigoAccent).animate(animationController), value: animationController.value)),
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 18, 0, 18),
+            child: LinearProgressIndicator(
+              backgroundColor: Colors.grey[200],
+              valueColor: ColorTween(begin: Colors.redAccent, end: Colors.indigoAccent).animate(animationController),
+              value: animationController.value,
+            ),
+          ),
         ],
       ),
     );

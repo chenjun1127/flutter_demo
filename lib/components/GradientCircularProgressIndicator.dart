@@ -55,22 +55,31 @@ class GradientCircularProgressIndicator extends StatelessWidget {
     return Transform.rotate(
       angle: -pi / 2.0 - _offset,
       child: CustomPaint(
-          size: Size.fromRadius(radius),
-          painter: _GradientCircularProgressPainter(
-            strokeWidth: strokeWidth,
-            strokeCapRound: strokeCapRound,
-            backgroundColor: backgroundColor,
-            value: value,
-            total: totalAngle,
-            radius: radius,
-            colors: _colors,
-          )),
+        size: Size.fromRadius(radius),
+        painter: _GradientCircularProgressPainter(
+          strokeWidth: strokeWidth,
+          strokeCapRound: strokeCapRound,
+          backgroundColor: backgroundColor,
+          value: value,
+          total: totalAngle,
+          radius: radius,
+          colors: _colors,
+        ),
+      ),
     );
   }
 }
 
 class _GradientCircularProgressPainter extends CustomPainter {
-  _GradientCircularProgressPainter({this.strokeWidth: 10.0, this.strokeCapRound: false, this.backgroundColor = const Color(0xFFEEEEEE), this.radius, this.total = 2 * pi, @required this.colors, this.stops, this.value});
+  _GradientCircularProgressPainter(
+      {this.strokeWidth: 10.0,
+      this.strokeCapRound: false,
+      this.backgroundColor = const Color(0xFFEEEEEE),
+      this.radius,
+      this.total = 2 * pi,
+      @required this.colors,
+      this.stops,
+      this.value});
 
   final double strokeWidth;
   final bool strokeCapRound;
