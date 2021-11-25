@@ -141,16 +141,22 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         onPressed: () {
                           if (index == 2) {
-                            Future result = Navigator.pushNamed(context, "demo${widget.list[index] + 1}",
-                                arguments: <String, String>{"city": "beijing"});
+                            Future result = Navigator.pushNamed(
+                              context,
+                              "demo${widget.list[index] + 1}",
+                              arguments: <String, String>{"city": "beijing"},
+                            );
                             result.then(
                               (value) {
                                 if (value == null) {
                                   showAlertDialog().then(
                                     (t) {
                                       if (t == true) {
-                                        Navigator.pushNamed(context, "demo${widget.list[index] + 1}",
-                                            arguments: <String, String>{"city": "beijing"});
+                                        Navigator.pushNamed(
+                                          context,
+                                          "demo${widget.list[index] + 1}",
+                                          arguments: <String, String>{"city": "beijing"},
+                                        );
                                       }
                                     },
                                   );
