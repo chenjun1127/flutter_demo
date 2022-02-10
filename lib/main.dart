@@ -77,7 +77,6 @@ class _MyHomePageState extends State<MyHomePage> {
   // 监听Bus events
   void _listen() {
     loginSubscription = eventBus.on<CustomEvent>((event) {
-      print("-----${event.type}");
       if (event.type == 1) {
         Fluttertoast.showToast(msg: event.message);
       }

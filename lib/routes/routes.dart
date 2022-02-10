@@ -19,11 +19,12 @@ import 'package:flutter_demo/pages/demo18.dart';
 import 'package:flutter_demo/pages/demo19.dart';
 import 'package:flutter_demo/pages/demo20.dart';
 import 'package:flutter_demo/pages/demo21.dart';
+import 'package:flutter_demo/pages/demo22.dart';
 import 'package:flutter_demo/views/event_bus_news.dart';
 import 'package:flutter_demo/views/flow_menu_page.dart';
 import 'package:flutter_demo/views/container_transform.dart';
 
-final List list = List.generate(21, (index) => index);
+final List list = List.generate(base.values.length, (index) => index);
 final base = {
   "demo1": (context) => new Demo1(),
   "demo2": (context) => new Demo2(),
@@ -46,6 +47,7 @@ final base = {
   "demo19": (context) => new Demo19(),
   "demo20": (context) => new Demo20(),
   "demo21": (context) => new Demo21(),
+  "demo22": (context) => new Demo22(),
 };
 
 final routes = {
