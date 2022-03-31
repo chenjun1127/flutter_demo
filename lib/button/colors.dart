@@ -15,7 +15,7 @@ class AppColors {
   static const Color white9alpha = Color.fromARGB(23, 255, 255, 255);
   static const Color white10alpha = Color.fromARGB(26, 255, 255, 255);
   static const Color white12alpha = Color.fromARGB(31, 255, 255, 255);
-  static const Color white15alpha = Color.fromARGB(26, 255, 255, 255);
+  static const Color white15alpha = Color.fromARGB(39, 255, 255, 255);
   static const Color white20alpha = Color.fromARGB(51, 255, 255, 255);
   static const Color white30alpha = Color.fromARGB(77, 255, 255, 255);
   static const Color white50alpha = Color.fromARGB(128, 255, 255, 255);
