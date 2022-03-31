@@ -23,8 +23,8 @@ class AppColors {
   static const Color white80alpha = Color.fromARGB(204, 255, 255, 255);
   static const Color white90alpha = Color.fromARGB(230, 255, 255, 255);
   static const Color white100alpha = Color.fromARGB(255, 255, 255, 255);
-  static const Color black40alpha = Color.fromARGB(66, 0, 0, 0);
-  static const Color black70alpha = Color.fromARGB(76, 0, 0, 0);
+  static const Color black40alpha = Color.fromARGB(102, 0, 0, 0);
+  static const Color black70alpha = Color.fromARGB(179, 0, 0, 0);
   static const Color black80alpha = Color.fromARGB(204, 0, 0, 0);
   static const Color e4e4e4100alpha = Color.fromARGB(255, 228, 228, 228);
   static const Color alpha100141414 = Color.fromARGB(255, 20, 20, 20);
@@ -36,7 +36,7 @@ class AppColors {
   static const Color alpha100C37E58 = Color.fromARGB(255, 195, 126, 88);
   static const Color alpha10054555A = Color.fromARGB(255, 84, 85, 90);
   static const Color alpha10072747A = Color.fromARGB(255, 114, 116, 122);
-  static const Color alpha60292A30 = Color.fromARGB(102, 41, 42, 48);
+  static const Color alpha60292A30 = Color.fromARGB(153, 41, 42, 48);
   static const Color alpha100161616 = Color.fromARGB(255, 22, 22, 22);
   static const Color alpha100111214 = Color.fromARGB(255, 17, 18, 20);
   static const Color alpha100333334 = Color.fromARGB(255, 51, 51, 52);
