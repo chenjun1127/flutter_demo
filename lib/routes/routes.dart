@@ -1,6 +1,7 @@
 import 'package:flutter_demo/pages/demo1.dart';
 import 'package:flutter_demo/pages/demo2.dart';
 import 'package:flutter_demo/pages/demo23.dart';
+import 'package:flutter_demo/pages/demo24.dart';
 import 'package:flutter_demo/pages/demo3.dart';
 import 'package:flutter_demo/pages/demo4.dart';
 import 'package:flutter_demo/pages/demo5.dart';
@@ -50,6 +51,7 @@ final base = {
   "demo21": (context) => new Demo21(),
   "demo22": (context) => new Demo22(),
   "demo23": (context) => new Demo23(),
+  "demo24": (context) => new Demo24(),
 };
 
 final routes = {
