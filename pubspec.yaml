@@ -48,7 +48,8 @@ dev_dependencies:
 flutter:
   assets:
     - images/network-fail.png
-    - images/bg.jpg
+    - images/bg1.jpg
+    - images/bg2.jpg
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
