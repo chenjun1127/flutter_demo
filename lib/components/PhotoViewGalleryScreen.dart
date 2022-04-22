@@ -59,7 +59,8 @@ class _PhotoViewGalleryScreenState extends State<PhotoViewGalleryScreen> {
             top: MediaQuery.of(context).padding.top + 15,
             width: MediaQuery.of(context).size.width,
             child: Center(
-              child: Text("${currentIndex + 1}/${widget.images.length}", style: TextStyle(color: Colors.white, fontSize: 16)),
+              child: Text("${currentIndex + 1}/${widget.images.length}",
+                  style: TextStyle(color: Colors.white, fontSize: 16)),
             ),
           ),
           Positioned(

@@ -98,7 +98,11 @@ class NewsState extends State<News> {
   // 上拉加载更多组件
   Widget getMoreWidget() {
     return Center(
-      child: Padding(padding: EdgeInsets.all(10.0), child: Loading(text: "数据加载中...",)),
+      child: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Loading(
+            text: "数据加载中...",
+          )),
     );
   }
 }

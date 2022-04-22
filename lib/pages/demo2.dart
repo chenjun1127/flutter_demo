@@ -40,7 +40,6 @@ class Demo2 extends StatelessWidget {
                                 "Child",
                                 style: TextStyle(fontSize: 25, color: Colors.white, fontWeight: FontWeight.bold),
                               ),
-                              
                             ),
                             alignment: Alignment.bottomCenter,
                           ),
@@ -78,11 +77,14 @@ class MyCustomPainter extends CustomPainter {
       ..color = Colors.white
       ..strokeWidth = 5
       ..style = PaintingStyle.stroke;
-    canvas.drawArc(Rect.fromCircle(center: Offset(size.width / 2, size.height / 2), radius: 90), -240 * pi / 180, 300 * pi / 180, false, paint);
+    canvas.drawArc(Rect.fromCircle(center: Offset(size.width / 2, size.height / 2), radius: 90), -240 * pi / 180,
+        300 * pi / 180, false, paint);
     paint.strokeWidth = 2;
-    canvas.drawArc(Rect.fromCircle(center: Offset(size.width / 2, size.height / 2), radius: 85), -240 * (pi / 180), 300 * (pi / 180), false, paint);
+    canvas.drawArc(Rect.fromCircle(center: Offset(size.width / 2, size.height / 2), radius: 85), -240 * (pi / 180),
+        300 * (pi / 180), false, paint);
     paint.strokeWidth = 1;
-    canvas.drawArc(Rect.fromCircle(center: Offset(size.width / 2, size.height / 2), radius: 80), -240 * (pi / 180), 300 * (pi / 180), false, paint);
+    canvas.drawArc(Rect.fromCircle(center: Offset(size.width / 2, size.height / 2), radius: 80), -240 * (pi / 180),
+        300 * (pi / 180), false, paint);
   }
 
   @override

@@ -26,8 +26,7 @@ class PictureState extends State<Picture> {
 
   void getData() async {
     var res = await HttpUtil.get(
-        url: 'https://pic.sogou.com/pics/json.jsp',
-        data: {"query": query, "start": page, "xml_len": count});
+        url: 'https://pic.sogou.com/pics/json.jsp', data: {"query": query, "start": page, "xml_len": count});
     var data = jsonDecode(res);
     setState(() {
       total = data["totalNum"];
@@ -41,8 +40,7 @@ class PictureState extends State<Picture> {
   void initState() {
     super.initState();
     scrollController.addListener(() {
-      if (scrollController.position.pixels ==
-          scrollController.position.maxScrollExtent) {
+      if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
         print("上拉加载更多");
         print(list.length);
         setState(() {
@@ -89,22 +87,15 @@ class PictureState extends State<Picture> {
                 controller: scrollController,
                 scrollDirection: Axis.vertical,
                 slivers: [
-                  SliverToBoxAdapter(
-                      child: Padding(
-                          padding: EdgeInsets.all(20), child: Text(query))),
+                  SliverToBoxAdapter(child: Padding(padding: EdgeInsets.all(20), child: Text(query))),
                   SliverPadding(
                       padding: EdgeInsets.all(0),
                       sliver: SliverGrid(
-                          delegate: SliverChildBuilderDelegate(
-                              (BuildContext context, int index) {
+                          delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
                             return InkWell(
                               onTap: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return PhotoViewGalleryScreen(
-                                      images: list,
-                                      index: index,
-                                      heroTag: "img");
+                                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                  return PhotoViewGalleryScreen(images: list, index: index, heroTag: "img");
                                 }));
                               },
                               child: Container(
@@ -112,19 +103,14 @@ class PictureState extends State<Picture> {
                                 // color: Colors.cyan[100 * (index % 9)],
                                 color: Colors.grey[200],
                                 child: ImageWidget(
-                                  url: list[index]['picUrl']
-                                      .toString()
-                                      .replaceAll(RegExp(r'^http$'), "https"),
-                                  w: (MediaQuery.of(context).size.width - 20) /
-                                      3,
-                                  h: (MediaQuery.of(context).size.width - 20) /
-                                      3,
+                                  url: list[index]['picUrl'].toString().replaceAll(RegExp(r'^http$'), "https"),
+                                  w: (MediaQuery.of(context).size.width - 20) / 3,
+                                  h: (MediaQuery.of(context).size.width - 20) / 3,
                                 ),
                               ),
                             );
                           }, childCount: list.length),
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3,
                             mainAxisSpacing: 10,
                             crossAxisSpacing: 10.0,
@@ -132,8 +118,7 @@ class PictureState extends State<Picture> {
                   SliverToBoxAdapter(
                       child: Padding(
                           padding: EdgeInsets.symmetric(vertical: 20),
-                          child:
-                              Visibility(child: Loading(), visible: isLoading)))
+                          child: Visibility(child: Loading(), visible: isLoading)))
                 ],
               ),
               onRefresh: _onRefresh),
@@ -141,12 +126,10 @@ class PictureState extends State<Picture> {
               bottom: 15,
               right: 15,
               child: TextButton(
-                child: Text("换一换",
-                    style: TextStyle(color: Colors.white, fontSize: 14)),
+                child: Text("换一换", style: TextStyle(color: Colors.white, fontSize: 14)),
                 style: ButtonStyle(
                     // 背景颜色
-                    backgroundColor:
-                        MaterialStateProperty.resolveWith((states) {
+                    backgroundColor: MaterialStateProperty.resolveWith((states) {
                       // 设置按下时的背景颜色
                       if (states.contains(MaterialState.pressed)) {
                         return Colors.green;
@@ -156,8 +139,7 @@ class PictureState extends State<Picture> {
                     }),
                     minimumSize: MaterialStateProperty.all(Size(100, 44)),
                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                        side: BorderSide.none,
-                        borderRadius: BorderRadius.all(Radius.circular(50))))),
+                        side: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(50))))),
                 onPressed: () {
                   setState(() {
                     query = queryArr[Random().nextInt(queryArr.length)];

@@ -8,7 +8,9 @@ class GradientButton extends StatelessWidget {
   final GestureTapCallback onPressed;
   final BorderRadius borderRadius;
 
-  GradientButton({Key key, this.colors, this.width, this.height, @required this.child, this.onPressed, this.borderRadius}) : super(key: key);
+  GradientButton(
+      {Key key, this.colors, this.width, this.height, @required this.child, this.onPressed, this.borderRadius})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

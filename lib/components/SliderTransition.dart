@@ -12,7 +12,12 @@ class SliderTransition extends AnimatedWidget {
   // 退场（出）方向
   final AxisDirection direction;
 
-  SliderTransition({Key key, @required Animation<double> position, this.transformHitTests = true, this.direction = AxisDirection.down, this.child})
+  SliderTransition(
+      {Key key,
+      @required Animation<double> position,
+      this.transformHitTests = true,
+      this.direction = AxisDirection.down,
+      this.child})
       : assert(position != null),
         super(key: key, listenable: position) {
     switch (direction) {

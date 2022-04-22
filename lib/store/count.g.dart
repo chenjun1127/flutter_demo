@@ -24,13 +24,11 @@ mixin _$CountStore on CountStoreMobx, Store {
     });
   }
 
-  final _$CountStoreMobxActionController =
-      ActionController(name: 'CountStoreMobx');
+  final _$CountStoreMobxActionController = ActionController(name: 'CountStoreMobx');
 
   @override
   void increment() {
-    final _$actionInfo = _$CountStoreMobxActionController.startAction(
-        name: 'CountStoreMobx.increment');
+    final _$actionInfo = _$CountStoreMobxActionController.startAction(name: 'CountStoreMobx.increment');
     try {
       return super.increment();
     } finally {
@@ -40,8 +38,7 @@ mixin _$CountStore on CountStoreMobx, Store {
 
   @override
   void decrement() {
-    final _$actionInfo = _$CountStoreMobxActionController.startAction(
-        name: 'CountStoreMobx.decrement');
+    final _$actionInfo = _$CountStoreMobxActionController.startAction(name: 'CountStoreMobx.decrement');
     try {
       return super.decrement();
     } finally {
@@ -51,8 +48,7 @@ mixin _$CountStore on CountStoreMobx, Store {
 
   @override
   void set(int value) {
-    final _$actionInfo = _$CountStoreMobxActionController.startAction(
-        name: 'CountStoreMobx.set');
+    final _$actionInfo = _$CountStoreMobxActionController.startAction(name: 'CountStoreMobx.set');
     try {
       return super.set(value);
     } finally {

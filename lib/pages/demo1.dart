@@ -17,7 +17,8 @@ class Demo1State extends State<Demo1> {
 
   @override
   Widget build(BuildContext context) {
-    Shader shader = LinearGradient(colors: [Colors.purple, Colors.orangeAccent, Colors.blue]).createShader(Rect.fromLTWH(0.0, 0.0, width ?? 283, height ?? 46));
+    Shader shader = LinearGradient(colors: [Colors.purple, Colors.orangeAccent, Colors.blue])
+        .createShader(Rect.fromLTWH(0.0, 0.0, width ?? 283, height ?? 46));
 
     return Scaffold(
       appBar: AppBar(

@@ -56,6 +56,6 @@ final base = {
 
 final routes = {
   "eventBusNews": (context) => EventBusNews(),
-  "flowMenuPage":(context) => FlowMenuPage(),
-  "containerTransform":(context) => ContainerTransform(),
+  "flowMenuPage": (context) => FlowMenuPage(),
+  "containerTransform": (context) => ContainerTransform(),
 };

@@ -1,4 +1,4 @@
-class UserInfo{
+class UserInfo {
   int age;
   String name;
 

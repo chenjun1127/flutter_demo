@@ -11,12 +11,10 @@ class Demo4 extends StatelessWidget {
         ),
         body: Padding(
           padding: EdgeInsets.all(18),
-          child: Wrap(
-            children: [
-              TapBoxA(),
-              ParentWidget(),
-            ]
-          ),
+          child: Wrap(children: [
+            TapBoxA(),
+            ParentWidget(),
+          ]),
         ));
   }
 }

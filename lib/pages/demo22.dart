@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/models/userInfo.dart';
+
 /// InheritedWidget用法，
 /// 参考：http://laomengit.com/decode/InheritedWidget.html
 class Demo22 extends StatefulWidget {

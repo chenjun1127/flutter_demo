@@ -37,7 +37,8 @@ class Demo8State extends State<Demo8> {
                     child: Text("添加商品"),
                     onPressed: () {
                       // 给购物车中添加商品，添加后总价会更新
-                      ChangeNotifierProvider.of<CartModel>(context, listen: false).add(Item(title: "商品一", count: 2, price: 20.0));
+                      ChangeNotifierProvider.of<CartModel>(context, listen: false)
+                          .add(Item(title: "商品一", count: 2, price: 20.0));
                     },
                   );
                 }),

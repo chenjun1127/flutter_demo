@@ -13,7 +13,6 @@ class NewCardB extends BaseCard {
 }
 
 class _NewCardBState extends State<NewCardB> with CardState<NewCardB> {
-
   @override
   Widget build(BuildContext context) {
     return Container(
